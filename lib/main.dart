@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naspa/pages/home/home.dart';
+import 'package:naspa/pages/wrapper/wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // ignore: prefer_const_constructors
     return Scaffold(
      
-      body: Home(),
+      body: Wrapper(),
        // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

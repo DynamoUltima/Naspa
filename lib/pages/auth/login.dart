@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:naspa/pages/auth/signup.dart';
+import 'package:naspa/pages/dashbaord/dashboard.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 34),
                       ),
-                      _buildEmail(),
+                      _buildNumber(),
                       _buildPassword(),
                     ],
                   ),
@@ -86,9 +87,13 @@ class _LoginState extends State<Login> {
                                 );
                               },
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Sign up",style: TextStyle(color:Colors.green,),)
-                              ),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Sign up",
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                    ),
+                                  )),
                             ),
                           ],
                         ),
@@ -111,10 +116,12 @@ class _LoginState extends State<Login> {
         borderRadius: new BorderRadius.circular(25.0),
       ),
       onPressed: () async {
-        if (_formkey.currentState!.validate()) {
-          setState(() => loading = true);
-          //NewsFeedPage()//PostProfile()
-        }
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Dashboard()));
+        // if (_formkey.currentState!.validate()) {
+        //   setState(() => loading = true);
+        //   //NewsFeedPage()//PostProfile()
+        // }
       },
       color: Colors.teal[400],
       child: Padding(
@@ -127,11 +134,11 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Padding _buildEmail() {
+  Padding _buildNumber() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
       child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.phone,
         onChanged: (val) {
           setState(() {
             _email = val;
@@ -149,7 +156,7 @@ class _LoginState extends State<Login> {
         },
         decoration: InputDecoration(
           isDense: true,
-          labelText: 'Email Address',
+          labelText: 'Phone Number',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(16),
