@@ -77,7 +77,9 @@ class _DashboardState extends State<Dashboard> {
               elevation: 10,
               child: Container(
                 decoration: BoxDecoration(
+                  
                   image: DecorationImage(
+                    colorFilter:ColorFilter.mode(Colors.white,BlendMode.softLight,),
                     image: AssetImage("assets/images/car.jpeg"),
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.topCenter,
@@ -191,8 +193,11 @@ class _DashboardState extends State<Dashboard> {
                 crossAxisCount: 2,
               ),
               itemBuilder: (BuildContext context, int index) {
-                return gridContainerMethod(serviceTabs[index].title,
-                    serviceTabs[index].imageAssets, serviceTabs[index].subText);
+                return gridContainerMethod(
+                  serviceTabs[index].title,
+                  serviceTabs[index].imageAssets,
+                  serviceTabs[index].subText,
+                );
               },
             ),
           )
@@ -245,6 +250,7 @@ class _DashboardState extends State<Dashboard> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
+                colorFilter:ColorFilter.mode(Colors.white54,BlendMode.overlay,),
                 image: AssetImage(imageAssets),
                 fit: BoxFit.fitHeight,
                 alignment: Alignment.topCenter,

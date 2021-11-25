@@ -1,7 +1,9 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
 
 class ServiceDetailPage extends StatefulWidget {
   const ServiceDetailPage({Key? key}) : super(key: key);
@@ -16,24 +18,70 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        iconTheme: IconThemeData(color: Colors.teal),
-        elevation: 10,
-        backgroundColor: Colors.white,
-        // ignore: prefer_const_constructors
-        title: Text("Car Wash",style: TextStyle(color: Colors.teal),),
-        centerTitle:true,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            calendarWidget(),
-          ],
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          iconTheme: IconThemeData(color: Colors.teal),
+          elevation: 10,
+          backgroundColor: Colors.white,
+          // ignore: prefer_const_constructors
+          title: Text(
+            "Car Wash",
+            style: TextStyle(color: Colors.teal),
+          ),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              calendarWidget(),
+              FormBuilder(
+                  child: Column(
+                children: [
+                  FormBuilderTextField(
+                    name: 'notes',
+                    // autofillHints: ['Add short notes'],
+                    decoration: InputDecoration(
+                      hintText: 'Add Title',
+                      contentPadding: EdgeInsets.only(left: 48),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                  Divider(),
+                  FormBuilderTextField(
+                    name: 'notes',
+                    maxLines: 5,
+                    minLines: 1,
+                    // autofillHints: ['Add short notes'],
+                    decoration: InputDecoration(
+                      hintText: 'Add short notes',
+                      // contentPadding: EdgeInsets.only(left: 48),
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.short_text),
+                    ),
+                  ),
+                  Divider(),
+                  FormBuilderDateTimePicker(
+                    name: 'date',
+                    initialDate: DateTime.now(),
+                    fieldHintText: 'Add Date',
+                    inputType: InputType.date,
+                    format: DateFormat('EEEE, dd MMMM, yyyy'),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.calendar_today_sharp),
+                    ),
+                  )
+                ],
+              ))
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.teal,
+          child: Icon(Icons.add),
+        ));
   }
 
   Widget calendarWidget() {
