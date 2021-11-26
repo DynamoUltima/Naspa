@@ -13,75 +13,80 @@ class ServiceDetailPage extends StatefulWidget {
 }
 
 class _ServiceDetailPageState extends State<ServiceDetailPage> {
-  //CalendarController _calendarController = CalendarController();
+  
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: true,
-          iconTheme: IconThemeData(color: Colors.teal),
-          elevation: 10,
-          backgroundColor: Colors.white,
-          // ignore: prefer_const_constructors
-          title: Text(
-            "Car Wash",
-            style: TextStyle(color: Colors.teal),
-          ),
-          centerTitle: true,
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(color: Colors.teal),
+        elevation: 10,
+        backgroundColor: Colors.white,
+        // ignore: prefer_const_constructors
+        title: Text(
+          "Car Wash",
+          style: TextStyle(color: Colors.teal),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              calendarWidget(),
-              FormBuilder(
-                  child: Column(
-                children: [
-                  FormBuilderTextField(
-                    name: 'notes',
-                    // autofillHints: ['Add short notes'],
-                    decoration: InputDecoration(
-                      hintText: 'Add Title',
-                      contentPadding: EdgeInsets.only(left: 48),
-                      border: InputBorder.none,
-                    ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            calendarWidget(),
+            FormBuilder(
+                child: Column(
+              children: [
+                FormBuilderTextField(
+                  name: 'notes',
+                  // autofillHints: ['Add short notes'],
+                  decoration: InputDecoration(
+                    hintText: 'Add Title',
+                    contentPadding: EdgeInsets.only(left: 48),
+                    border: InputBorder.none,
                   ),
-                  Divider(),
-                  FormBuilderTextField(
-                    name: 'notes',
-                    maxLines: 5,
-                    minLines: 1,
-                    // autofillHints: ['Add short notes'],
-                    decoration: InputDecoration(
-                      hintText: 'Add short notes',
-                      // contentPadding: EdgeInsets.only(left: 48),
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.short_text),
-                    ),
+                ),
+                Divider(),
+                FormBuilderTextField(
+                  name: 'notes',
+                  maxLines: 5,
+                  minLines: 1,
+                  // autofillHints: ['Add short notes'],
+                  decoration: InputDecoration(
+                    hintText: 'Add short notes',
+                    // contentPadding: EdgeInsets.only(left: 48),
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.short_text),
                   ),
-                  Divider(),
-                  FormBuilderDateTimePicker(
-                    name: 'date',
-                    initialDate: DateTime.now(),
-                    fieldHintText: 'Add Date',
-                    inputType: InputType.date,
-                    format: DateFormat('EEEE, dd MMMM, yyyy'),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.calendar_today_sharp),
-                    ),
-                  )
-                ],
-              ))
-            ],
-          ),
+                ),
+                Divider(),
+                FormBuilderDateTimePicker(
+                  name: 'date',
+                  initialDate: DateTime.now(),
+                  fieldHintText: 'Add Date',
+                  inputType: InputType.date,
+                  format: DateFormat('EEEE, dd MMMM, yyyy'),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.calendar_today_sharp),
+                  ),
+                ),
+                Divider(),
+                bookAppointmentButton(),
+                SizedBox(height: 15,)
+              ],
+            ))
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.teal,
-          child: Icon(Icons.add),
-        ));
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   backgroundColor: Colors.teal,
+      //   child: Icon(Icons.add),
+      // ),
+    );
   }
 
   Widget calendarWidget() {
@@ -108,6 +113,31 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
               Icons.chevron_right,
               color: Colors.white,
             )),
+      ),
+    );
+  }
+
+  RaisedButton bookAppointmentButton() {
+    return RaisedButton(
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(25.0),
+      ),
+      onPressed: () async {
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (context) => Dashboard()));
+        // if (_formkey.currentState!.validate()) {
+        //   setState(() => loading = true);
+        //   //NewsFeedPage()//PostProfile()
+        // }
+      },
+      color: Colors.teal[400],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          'save',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
