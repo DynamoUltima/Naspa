@@ -39,7 +39,9 @@ class _HomeState extends State<Home> {
     return Container(
       child: ListView(
         children: [
-          CarouselWidget(),
+          SizedBox(
+            height: 210,
+            child: CarouselWidget(),),
           Container(
             // height: 300,
             child: GridView.builder(
@@ -71,7 +73,7 @@ class _HomeState extends State<Home> {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => ServiceDetailPage()));
+              MaterialPageRoute(builder: (context) => ServiceDetailPage(pageTitle: title,)));
         },
         child: Card(
           clipBehavior: Clip.antiAliasWithSaveLayer,

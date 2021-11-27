@@ -13,8 +13,9 @@ class CarouselWidget extends StatefulWidget {
 class _CarouselWidgetState extends State<CarouselWidget> {
   List<Widget> carouselCards = [
     Container(
-      // height: 230,
+      //  height: 230,
       child: Card(
+        
         color: Colors.teal[300],
         clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: RoundedRectangleBorder(
@@ -23,15 +24,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         margin: EdgeInsets.all(16),
         elevation: 10,
         child: Container(
-          // decoration: BoxDecoration(
-
-          //   image: DecorationImage(
-          //     colorFilter:ColorFilter.mode(Colors.white70,BlendMode.overlay,),
-          //     image: AssetImage("assets/images/car.jpeg"),
-          //     fit: BoxFit.fitWidth,
-          //     alignment: Alignment.topCenter,
-          //   ),
-          // ),
+         
           child: Column(
             children: [
               SizedBox(
@@ -67,7 +60,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                 height: 15,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   // ignore: prefer_const_literals_to_create_immutables
@@ -134,6 +127,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         ),
       ),
     ),
+
     Container(
       height: 230,
       child: Card(
@@ -189,7 +183,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                 height: 15,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   // ignore: prefer_const_literals_to_create_immutables
@@ -221,7 +215,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                       ),
                     ),
                     Expanded(
-                      flex:1,
+                      
                       child: Center(
                         child: SizedBox(
                           height: 60,

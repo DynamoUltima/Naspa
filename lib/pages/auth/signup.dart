@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspa/pages/dashbaord/dashboard.dart';
 import 'package:naspa/shared/constant.dart';
 
 class SignUp extends StatefulWidget {
@@ -16,8 +17,8 @@ class _SignUpState extends State<SignUp> {
   late String _phoneNumber;
   bool loading = false;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-String src =
-      "https://www.shell.ca/en_ca/motorists/shell-canada-car-wash/_jcr_content/par/pageHeader/image.img.960.jpeg/1514941379206/27696-bnr-p5-cw-1900x1200-new.jpeg?imformat=chrome&imwidth=1280";
+  String src =
+      "https://i.pinimg.com/564x/74/16/a8/7416a803c1e946983e4abeef009a0ebf.jpg";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,19 +30,18 @@ String src =
             Expanded(
               flex: 1,
               child: Container(
-                 height: 200,
-                 
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(40.0),
-                      bottomLeft: Radius.circular(40.0),
-                    ),
-                    child: Image.network(
-                      src,
-                      fit: BoxFit.cover,
-                      isAntiAlias: true,
-                    ),
+                height: 200,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(40.0),
+                    bottomLeft: Radius.circular(40.0),
                   ),
+                  child: Image.network(
+                    src,
+                    fit: BoxFit.cover,
+                    isAntiAlias: true,
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -49,11 +49,11 @@ String src =
               child: Container(
                 child: Column(
                   children: [
-                     Text(
-                        "Sign Up",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 34),
-                      ),
+                    Text(
+                      "Sign Up",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
+                    ),
                     _buildFirstName(),
                     _buildLastName(),
                     _buildEmail(),
@@ -139,10 +139,12 @@ String src =
         borderRadius: BorderRadius.circular(25.0),
       ),
       onPressed: () async {
-        if (_formkey.currentState!.validate()) {
-          setState(() => loading = true);
-          //NewsFeedPage()//PostProfile()
-        }
+        // if (_formkey.currentState!.validate()) {
+        //   setState(() => loading = true);
+        //   //NewsFeedPage()//PostProfile()
+        // }
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Dashboard()));
       },
       color: Colors.teal[400],
       child: Padding(

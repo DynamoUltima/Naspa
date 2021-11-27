@@ -6,14 +6,14 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
 class ServiceDetailPage extends StatefulWidget {
-  const ServiceDetailPage({Key? key}) : super(key: key);
+  const ServiceDetailPage({Key? key,required this.pageTitle}) : super(key: key);
+  final String pageTitle;
 
   @override
   _ServiceDetailPageState createState() => _ServiceDetailPageState();
 }
 
 class _ServiceDetailPageState extends State<ServiceDetailPage> {
-  
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
@@ -26,7 +26,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
         backgroundColor: Colors.white,
         // ignore: prefer_const_constructors
         title: Text(
-          "Car Wash",
+          widget.pageTitle,
           style: TextStyle(color: Colors.teal),
         ),
         centerTitle: true,
@@ -63,19 +63,21 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                 ),
                 Divider(),
                 FormBuilderDateTimePicker(
-                  name: 'date',
+                  name: 'time',
                   initialDate: DateTime.now(),
-                  fieldHintText: 'Add Date',
-                  inputType: InputType.date,
-                  format: DateFormat('EEEE, dd MMMM, yyyy'),
+                  fieldHintText: 'Add Time',
+                  inputType: InputType.time,
+                  //format: DateFormat('EEEE, dd MMMM, yyyy'),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.calendar_today_sharp),
+                    prefixIcon: Icon(Icons.timer),
                   ),
                 ),
                 Divider(),
                 bookAppointmentButton(),
-                SizedBox(height: 15,)
+                SizedBox(
+                  height: 15,
+                )
               ],
             ))
           ],
@@ -135,7 +137,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Text(
-          'save',
+          'Book Apppointment',
           style: TextStyle(color: Colors.white),
         ),
       ),
