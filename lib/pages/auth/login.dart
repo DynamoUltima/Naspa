@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
   bool loading = false;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String src =
-      "https://i.pinimg.com/564x/74/16/a8/7416a803c1e946983e4abeef009a0ebf.jpg";
+      "assets/images/red-car.webp";
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
                       bottomRight: Radius.circular(40.0),
                       bottomLeft: Radius.circular(40.0),
                     ),
-                    child: Image.network(
+                    child: Image.asset(
                       src,
                       fit: BoxFit.cover,
                       isAntiAlias: true,
@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Do you have an account"),
+                            Text("Do you have an account?"),
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(

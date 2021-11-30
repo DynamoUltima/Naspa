@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:naspa/pages/subpages/payment.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
 class ServiceDetailPage extends StatefulWidget {
-  const ServiceDetailPage({Key? key,required this.pageTitle}) : super(key: key);
+  const ServiceDetailPage({Key? key, required this.pageTitle})
+      : super(key: key);
   final String pageTitle;
 
   @override
@@ -14,10 +16,14 @@ class ServiceDetailPage extends StatefulWidget {
 }
 
 class _ServiceDetailPageState extends State<ServiceDetailPage> {
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
+
+
 
   @override
   Widget build(BuildContext context) {
+      List cars = ["BMW","Toyota","Mercedes"];
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -39,15 +45,34 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
             FormBuilder(
                 child: Column(
               children: [
-                FormBuilderTextField(
-                  name: 'notes',
-                  // autofillHints: ['Add short notes'],
+                FormBuilderDropdown(
+                  name: 'car',
                   decoration: InputDecoration(
-                    hintText: 'Add Title',
-                    contentPadding: EdgeInsets.only(left: 48),
+                    // labelText: 'Car',
                     border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 48)
                   ),
+                  // initialValue: 'Male',
+                  allowClear: true,
+                  hint: Text('Select Car'),
+                  // validator: FormBuilderValidators.compose(
+                  //     [FormBuilderValidators.required(context)]),
+                  items: cars
+                      .map((car) => DropdownMenuItem(
+                            value: car,
+                            child: Text('$car'),
+                          ))
+                      .toList(),
                 ),
+                // FormBuilderTextField(
+                //   name: 'notes',
+                //   // autofillHints: ['Add short notes'],
+                //   decoration: InputDecoration(
+                //     hintText: 'Add Title',
+                //     contentPadding: EdgeInsets.only(left: 48),
+                //     border: InputBorder.none,
+                //   ),
+                // ),
                 Divider(),
                 FormBuilderTextField(
                   name: 'notes',
@@ -69,6 +94,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                   inputType: InputType.time,
                   //format: DateFormat('EEEE, dd MMMM, yyyy'),
                   decoration: InputDecoration(
+                    hintText: 'Time',
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.timer),
                   ),
@@ -126,8 +152,8 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
         borderRadius: new BorderRadius.circular(25.0),
       ),
       onPressed: () async {
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (context) => Dashboard()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Payment()));
         // if (_formkey.currentState!.validate()) {
         //   setState(() => loading = true);
         //   //NewsFeedPage()//PostProfile()

@@ -35,8 +35,8 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          "NASPA-AUTO", //replace with logo
-          style: TextStyle(color: Colors.indigo[700]),
+          "NASPA", //replace with logo
+          style: TextStyle(color: Colors.indigo[700],),
         ),
         centerTitle: true,
         actions: [

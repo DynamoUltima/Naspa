@@ -39,6 +39,9 @@ dependencies:
   flutter_form_builder: ^7.0.0
   flutter_intl:
   carousel_slider: 
+  http:
+  uuid: 
+  flutter_google_places: ^0.3.0  
 
 dev_dependencies:
   flutter_test:

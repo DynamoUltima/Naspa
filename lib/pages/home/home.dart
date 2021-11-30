@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:naspa/models/service.dart';
 import 'package:naspa/pages/service-detail-page.dart';
+import 'package:naspa/pages/subpages/extras.dart';
+import 'package:naspa/pages/subpages/tow_me.dart';
 import 'package:naspa/shared/carousel.dart';
 
 class Home extends StatefulWidget {
@@ -17,21 +19,25 @@ class _HomeState extends State<Home> {
         title: "Car Wash",
         imageAssets: "assets/images/car-wash.jpg",
         subText: "Affordable",
+        subPage:ServiceDetailPage(pageTitle: "Car Wash",),
       ),
       Service(
         title: "Quick Lube",
         imageAssets: "assets/images/limo.jpeg",
         subText: "Affordable",
+         subPage:ServiceDetailPage(pageTitle: "Quick Lube",),
       ),
       Service(
         title: "Tow Me",
         imageAssets: "assets/images/car-towing.jpg",
         subText: "Affordable",
+         subPage:TowMePage(pageTitle: 'Tow Me'),
       ),
       Service(
         title: "Extras",
-        imageAssets: "assets/images/limo.jpeg",
+        imageAssets: "assets/images/people.jpeg",
         subText: "Affordable",
+         subPage:Extras(pageTitle: 'Tow Me'),
       ),
     ];
   @override
@@ -57,6 +63,7 @@ class _HomeState extends State<Home> {
                   serviceTabs[index].title,
                   serviceTabs[index].imageAssets,
                   serviceTabs[index].subText,
+                  serviceTabs[index].subPage,
                 );
               },
             ),
@@ -65,15 +72,15 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
+ 
   Container gridContainerMethod(
-      String title, String imageAssets, String subText) {
+      String title, String imageAssets, String subText,Widget subPage) {
     return Container(
       // height: 230,
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => ServiceDetailPage(pageTitle: title,)));
+              MaterialPageRoute(builder: (context) => subPage));
         },
         child: Card(
           clipBehavior: Clip.antiAliasWithSaveLayer,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspa/pages/auth/login.dart';
 import 'package:naspa/pages/dashbaord/dashboard.dart';
 import 'package:naspa/shared/constant.dart';
 
@@ -17,8 +18,7 @@ class _SignUpState extends State<SignUp> {
   late String _phoneNumber;
   bool loading = false;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  String src =
-      "https://i.pinimg.com/564x/74/16/a8/7416a803c1e946983e4abeef009a0ebf.jpg";
+  String src = "assets/images/red-car.webp";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _SignUpState extends State<SignUp> {
                     bottomRight: Radius.circular(40.0),
                     bottomLeft: Radius.circular(40.0),
                   ),
-                  child: Image.network(
+                  child: Image.asset(
                     src,
                     fit: BoxFit.cover,
                     isAntiAlias: true,
@@ -58,7 +58,35 @@ class _SignUpState extends State<SignUp> {
                     _buildLastName(),
                     _buildEmail(),
                     _buildPassword(),
-                    signupButton()
+                    _buildPhoneNumber(),
+                    signupButton(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Do you have an account?"),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => Login(),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -92,6 +120,39 @@ class _SignUpState extends State<SignUp> {
         decoration: InputDecoration(
           isDense: true,
           labelText: 'Email Address',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _buildPhone() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+      child: TextFormField(
+        keyboardType: TextInputType.number,
+        onChanged: (val) {
+          setState(() {
+            _email = val;
+          });
+        },
+        // validator: (val) {
+        //   String pattern =
+        //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+        //   RegExp regex = RegExp(pattern);
+        //   if (!regex.hasMatch(val!)) {
+        //     return "Enter Valid Email";
+        //   }
+        //   return null;
+        // },
+        decoration: InputDecoration(
+          isDense: true,
+          labelText: 'Phone number',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(16),
