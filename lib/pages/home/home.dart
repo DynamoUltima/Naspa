@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naspa/models/service.dart';
-import 'package:naspa/pages/service-detail-page.dart';
+import 'package:naspa/pages/subpages/service-detail-page.dart';
 import 'package:naspa/pages/subpages/extras.dart';
 import 'package:naspa/pages/subpages/tow_me.dart';
 import 'package:naspa/shared/carousel.dart';
@@ -35,9 +35,9 @@ class _HomeState extends State<Home> {
       ),
       Service(
         title: "Extras",
-        imageAssets: "assets/images/people.jpeg",
+        imageAssets: "assets/images/car.jpeg",
         subText: "Affordable",
-         subPage:Extras(pageTitle: 'Tow Me'),
+         subPage:Extras(pageTitle: 'Extras'),
       ),
     ];
   @override

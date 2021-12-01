@@ -1,8 +1,11 @@
 // ignore: file_names
 // ignore: file_names
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:google_api_headers/google_api_headers.dart';
@@ -19,7 +22,6 @@ class TowMePage extends StatefulWidget {
   _TowMePageState createState() => _TowMePageState();
 }
 
-
 final searchScaffoldKey = GlobalKey<ScaffoldState>();
 
 class _TowMePageState extends State<TowMePage> {
@@ -27,7 +29,6 @@ class _TowMePageState extends State<TowMePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -41,24 +42,72 @@ class _TowMePageState extends State<TowMePage> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-          child: Center(
-              child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          //_buildDropdownMenu(),
-          ElevatedButton(
-            onPressed: _handlePressButton,
-            child: const Text("Search location"),
-          ),
-          // ElevatedButton(
-          //   child: Text("Custom"),
-          //   onPressed: () {
-          //     Navigator.of(context).pushNamed("/search");
-          //   },
-          // ),
-        ],
-      ))),
+      body: FormBuilder(
+        child: Column(
+          
+          children: [
+            SizedBox(height: 15,),
+            FormBuilderTextField(
+              name: 'pick up point',
+              // maxLines: 5,
+              // minLines: 1,
+              // autofillHints: ['Add short notes'],
+              decoration: InputDecoration(
+                hintText: 'pick up',
+                // contentPadding: EdgeInsets.only(left: 48),
+                border: InputBorder.none,
+                prefixIcon: Icon(Icons.gps_fixed),
+              ),
+            ),
+            Divider(color:Colors.black),
+            FormBuilderTextField(
+              name: 'drop off point',
+              // maxLines: 5,
+              // minLines: 1,
+              // autofillHints: ['Add short notes'],
+              decoration: InputDecoration(
+                hintText: 'drop off point',
+                // contentPadding: EdgeInsets.only(left: 48),
+                border: InputBorder.none,
+                prefixIcon: Icon(Icons.gps_not_fixed),
+              ),
+            ),
+            Divider(color:Colors.black),
+            FormBuilderTextField(
+              name: 'notes',
+              maxLines: 5,
+              minLines: 1,
+              // autofillHints: ['Add short notes'],
+              decoration: InputDecoration(
+                hintText: 'Add short notes',
+                // contentPadding: EdgeInsets.only(left: 48),
+                border: InputBorder.none,
+                prefixIcon: Icon(Icons.short_text),
+              ),
+            ),
+            Divider(color:Colors.black),
+            Container(
+                child: Center(
+                    child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                //_buildDropdownMenu(),
+                ElevatedButton(
+                  style:ElevatedButton.styleFrom(primary: Colors.teal),
+                  onPressed: _handlePressButton,
+                  child: const Text("Search location"),
+                ),
+                // ElevatedButton(
+                //   child: Text("Custom"),
+                //   onPressed: () {
+                //     Navigator.of(context).pushNamed("/search");
+                //   },
+                // ),
+              ],
+            ))),
+          ],
+        ),
+      ),
     );
   }
 
@@ -120,7 +169,8 @@ Future<Null> displayPrediction(Prediction p, ScaffoldState scaffold) async {
       apiKey: kGoogleApiKey,
       apiHeaders: await GoogleApiHeaders().getHeaders(),
     );
-    PlacesDetailsResponse detail = await _places.getDetailsByPlaceId(p.placeId.toString());
+    PlacesDetailsResponse detail =
+        await _places.getDetailsByPlaceId(p.placeId.toString());
     final lat = detail.result.geometry!.location.lat;
     final lng = detail.result.geometry!.location.lng;
 

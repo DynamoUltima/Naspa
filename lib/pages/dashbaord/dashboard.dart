@@ -5,7 +5,7 @@ import 'package:naspa/models/service.dart';
 import 'package:naspa/pages/home/history.dart';
 import 'package:naspa/pages/home/home.dart';
 import 'package:naspa/pages/home/settings.dart';
-import 'package:naspa/pages/service-detail-page.dart';
+import 'package:naspa/pages/subpages/service-detail-page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);

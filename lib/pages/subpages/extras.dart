@@ -34,6 +34,7 @@ class _ExtrasState extends State<Extras> {
         child: Container(
           child: Column(
             children: [
+              SizedBox(height: 15,),
               FormBuilderDropdown(
                     name: 'car',
                     decoration: InputDecoration(
@@ -53,19 +54,20 @@ class _ExtrasState extends State<Extras> {
                             ))
                         .toList(),
                   ),
-                   Divider(),
+                   Divider(color:Colors.black),
                   FormBuilderTextField(
                     name: 'notes',
                     maxLines: 5,
                     minLines: 1,
                     // autofillHints: ['Add short notes'],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Add short notes',
                       // contentPadding: EdgeInsets.only(left: 48),
                       border: InputBorder.none,
                       prefixIcon: Icon(Icons.short_text),
                     ),
                   ),
+                  Divider(color:Colors.black),
                   SizedBox(height: 20,),
     
                   servicesButton()
