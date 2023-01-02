@@ -26,6 +26,7 @@ final searchScaffoldKey = GlobalKey<ScaffoldState>();
 
 class _TowMePageState extends State<TowMePage> {
   Mode _mode = Mode.overlay;
+  List cars = ["BMW", "Toyota", "Mercedes"];
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,29 @@ class _TowMePageState extends State<TowMePage> {
       ),
       body: FormBuilder(
         child: Column(
-          
           children: [
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
+            FormBuilderDropdown(
+              name: 'car',
+              decoration: InputDecoration(
+                  // labelText: 'Car',
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(left: 48)),
+              // initialValue: 'Male',
+              allowClear: true,
+              hint: Text('Select Car'),
+              // validator: FormBuilderValidators.compose(
+              //     [FormBuilderValidators.required(context)]),
+              items: cars
+                  .map((car) => DropdownMenuItem(
+                        value: car,
+                        child: Text('$car'),
+                      ))
+                  .toList(),
+            ),
+            Divider(color: Colors.black),
             FormBuilderTextField(
               name: 'pick up point',
               // maxLines: 5,
@@ -59,7 +80,7 @@ class _TowMePageState extends State<TowMePage> {
                 prefixIcon: Icon(Icons.gps_fixed),
               ),
             ),
-            Divider(color:Colors.black),
+            Divider(color: Colors.black),
             FormBuilderTextField(
               name: 'drop off point',
               // maxLines: 5,
@@ -72,7 +93,7 @@ class _TowMePageState extends State<TowMePage> {
                 prefixIcon: Icon(Icons.gps_not_fixed),
               ),
             ),
-            Divider(color:Colors.black),
+            Divider(color: Colors.black),
             FormBuilderTextField(
               name: 'notes',
               maxLines: 5,
@@ -85,7 +106,7 @@ class _TowMePageState extends State<TowMePage> {
                 prefixIcon: Icon(Icons.short_text),
               ),
             ),
-            Divider(color:Colors.black),
+            Divider(color: Colors.black),
             Container(
                 child: Center(
                     child: Column(
@@ -93,7 +114,12 @@ class _TowMePageState extends State<TowMePage> {
               children: <Widget>[
                 //_buildDropdownMenu(),
                 ElevatedButton(
-                  style:ElevatedButton.styleFrom(primary: Colors.teal),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                  ),
                   onPressed: _handlePressButton,
                   child: const Text("Search location"),
                 ),

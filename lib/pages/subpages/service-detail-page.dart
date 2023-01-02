@@ -18,11 +18,13 @@ class ServiceDetailPage extends StatefulWidget {
 class _ServiceDetailPageState extends State<ServiceDetailPage> {
   final _formKey = GlobalKey<FormBuilderState>();
 
-
-
   @override
   Widget build(BuildContext context) {
-      List cars = ["BMW","Toyota","Mercedes"];
+    List cars = ["BMW", "Toyota", "Mercedes"];
+    List serviceType = [
+      "deluxe(full package with interior and exterior engine)",
+      "standard(interior & exterior detailing)"
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -48,10 +50,10 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                 FormBuilderDropdown(
                   name: 'car',
                   decoration: InputDecoration(
-                    // labelText: 'Car',
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(left: 48)
-                  ),
+                      // labelText: 'Car',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(left: 48),
+                      prefixIcon: Icon(Icons.car_rental)),
                   // initialValue: 'Male',
                   allowClear: true,
                   hint: Text('Select Car'),
@@ -64,15 +66,28 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                           ))
                       .toList(),
                 ),
-                // FormBuilderTextField(
-                //   name: 'notes',
-                //   // autofillHints: ['Add short notes'],
-                //   decoration: InputDecoration(
-                //     hintText: 'Add Title',
-                //     contentPadding: EdgeInsets.only(left: 48),
-                //     border: InputBorder.none,
-                //   ),
-                // ),
+                Divider(),
+                FormBuilderDropdown(
+                  name: 'service type',
+                  //menuMaxHeight: 100,
+                  decoration: InputDecoration(
+                    // labelText: 'Car',
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 48),
+                    prefixIcon: Icon(Icons.account_balance_wallet),
+                  ),
+                  // initialValue: 'Male',
+                  allowClear: true,
+                  hint: Text('Select Service Type'),
+                  // validator: FormBuilderValidators.compose(
+                  //     [FormBuilderValidators.required(context)]),
+                  items: serviceType
+                      .map((service) => DropdownMenuItem(
+                            value: service,
+                            child: Text('$service'),
+                          ))
+                      .toList(),
+                ),
                 Divider(),
                 FormBuilderTextField(
                   name: 'notes',
@@ -88,6 +103,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage> {
                 ),
                 Divider(),
                 FormBuilderDateTimePicker(
+                  
                   name: 'time',
                   initialDate: DateTime.now(),
                   fieldHintText: 'Add Time',

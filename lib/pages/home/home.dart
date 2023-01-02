@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:naspa/models/service.dart';
 import 'package:naspa/pages/subpages/service-detail-page.dart';
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
       ),
       Service(
         title: "Quick Lube",
-        imageAssets: "assets/images/limo.jpeg",
+        imageAssets: "assets/images/engine_oil.png",
         subText: "Affordable",
          subPage:ServiceDetailPage(pageTitle: "Quick Lube",),
       ),
@@ -35,7 +37,7 @@ class _HomeState extends State<Home> {
       ),
       Service(
         title: "Extras",
-        imageAssets: "assets/images/car.jpeg",
+        imageAssets: "assets/images/workers.png",
         subText: "Affordable",
          subPage:Extras(pageTitle: 'Extras'),
       ),
